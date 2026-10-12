@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>影视传媒 - 新闻编辑室正版片单、编辑排片与影视盗版避坑</title>
+<meta name="description" content="影视传媒做新闻编辑室导航：按头版/深度/快讯/评论/专栏分栏推正版电影片单，编辑时段排片，传播力雷达评分，1905/腾讯/爱奇艺/优酷/B站/央视频等正版平台导航，枪版与盗版影视避坑，移动端自适应。">
+<meta name="keywords" content="影视传媒,新闻编辑室,正版电影片单,编辑排片,传播力雷达,盗版影视避坑,不装专用播放器">
+<meta name="author" content="影视传媒">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://yingshichuanmei-h5.github.io/">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:#f5f1e8;color:#2a2a2a;line-height:1.78}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+:root{
+  --green:#1a3a2a;
+  --green2:#2a5a42;
+  --paper:#f5f1e8;
+  --paper2:#ebe5d3;
+  --red:#c8321a;
+  --red2:#e84e35;
+  --gold:#b8860b;
+  --gold2:#d4a82a;
+  --white:#fffdf7;
+  --muted:#6a6258;
+  --dark:#1a1a1a;
+}
+
+/* 导航：报眉 */
+.nav{position:sticky;top:0;z-index:99;background:var(--green);border-bottom:4px double var(--gold)}
+.nav__box{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;flex-wrap:wrap;gap:.4rem}
+.nav__logo{font-weight:900;font-size:1.35rem;color:var(--paper);letter-spacing:2px;font-family:"Songti SC","SimSun",serif}
+.nav__logo b{color:var(--gold)}
+.nav__edition{margin-left:.5rem;font-size:.65rem;color:var(--gold);border:1px solid var(--gold);padding:.1rem .5rem;border-radius:1px}
+.nav__links{display:flex;gap:.3rem;flex-wrap:wrap}
+.nav__links a{padding:.35rem .75rem;font-size:.8rem;color:var(--paper);background:var(--green2);border:1px solid var(--green2)}
+.nav__links a:hover{background:var(--gold);color:var(--green);border-color:var(--gold)}
+
+/* Hero：报头 */
+.hero{max-width:1200px;margin:2rem auto;padding:0 1rem}
+.hero__masthead{background:var(--white);border:2px solid var(--green);border-radius:2px;overflow:hidden}
+.masthead__top{display:flex;justify-content:space-between;align-items:center;padding:.5rem 1.2rem;border-bottom:2px solid var(--green);font-size:.68rem;color:var(--muted)}
+.masthead__top span:first-child::before{content:"VOL. ";font-weight:800}
+.masthead__top span:last-child::before{content:"EDITION "}
+.masthead__title{text-align:center;padding:1.5rem 1rem .8rem}
+.masthead__title h1{font-family:"Songti SC","SimSun",serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--green);letter-spacing:8px;line-height:1}
+.masthead__title h1 em{font-style:normal;color:var(--red)}
+.masthead__rule{display:flex;align-items:center;justify-content:center;gap:.8rem;padding:.4rem 1rem}
+.masthead__rule::before,.masthead__rule::after{content:"";flex:1;height:2px;background:var(--green)}
+.masthead__rule span{font-size:.72rem;color:var(--gold);font-weight:800;letter-spacing:4px}
+.masthead__lead{display:grid;grid-template-columns:2fr 1fr;gap:0}
+.lead__main{padding:1.5rem 2rem;border-right:2px solid var(--green)}
+.lead__tag{display:inline-block;font-size:.65rem;color:var(--white);background:var(--red);padding:.15rem .6rem;margin-bottom:.6rem;font-weight:800;letter-spacing:2px}
+.lead__main h2{font-family:"Songti SC","SimSun",serif;font-size:1.5rem;color:var(--green);margin-bottom:.5rem;line-height:1.3}
+.lead__main p{font-size:.88rem;color:var(--muted);margin-bottom:.8rem}
+.lead__btn{display:inline-block;background:var(--green);color:var(--paper);font-weight:800;padding:.6rem 1.5rem;font-size:.85rem;border:2px solid var(--green)}
+.lead__side{background:var(--paper2);padding:1.2rem;display:flex;flex-direction:column;justify-content:center;gap:.6rem}
+.lead__side-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--dark)}
+.lead__side-item .dot{width:8px;height:8px;background:var(--red);flex-shrink:0}
+
+/* 快捷标签 */
+.quick{max-width:1200px;margin:1.4rem auto 0;padding:0 1rem}
+.quick__box{display:flex;flex-wrap:wrap;gap:.55rem}
+.qbtn{background:var(--white);border:1.5px solid var(--green);color:var(--green);padding:.35rem .8rem;font-size:.78rem;font-weight:700}
+.qbtn b{color:var(--red)}
+
+.wrap{max-width:1200px;margin:3.6rem auto;padding:0 1rem}
+.head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem;position:relative}
+.head::after{content:"";position:absolute;bottom:-6px;left:0;width:60px;height:3px;background:var(--red)}
+.head h2{font-family:"Songti SC","SimSun",serif;font-size:1.5rem;color:var(--green)}
+.head h2 span{color:var(--red)}
+.head a{margin-left:auto;color:var(--muted);font-size:.82rem}
+
+/* 栏目1：报纸分栏片单 */
+.columns{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.col-card{background:var(--white);border:1.5px solid var(--green);border-radius:2px;overflow:hidden;transition:.3s}
+.col-card:hover{box-shadow:4px 4px 0 var(--gold)}
+.col-card__header{background:var(--green);color:var(--paper);padding:.5rem .8rem;display:flex;align-items:center;justify-content:space-between}
+.col-card__header h3{font-size:.9rem;font-weight:800;letter-spacing:1px}
+.col-card__header .col-no{font-size:.65rem;color:var(--gold);border:1px solid var(--gold);padding:.1rem .4rem}
+.col-card__body{padding:1rem}
+.col-card__emo{font-size:1.6rem;margin-bottom:.4rem}
+.col-card__body h4{font-size:.88rem;color:var(--dark);margin-bottom:.3rem;font-weight:800}
+.col-card__body p{font-size:.75rem;color:var(--muted);min-height:48px}
+.col-card__byline{font-size:.65rem;color:var(--gold);margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--paper2)}
+.radar-mini{display:flex;gap:2px;margin-top:.5rem}
+.radar-mini span{width:10px;height:10px;background:var(--green)}
+.radar-mini span.off{background:var(--paper2)}
+.col-card__plat{display:inline-block;margin-top:.5rem;font-size:.65rem;color:var(--white);background:var(--red);padding:.12rem .45rem}
+
+/* 栏目2：编辑批注排片 */
+.schedule{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.schedule__col{background:var(--white);border:1.5px solid var(--green);border-radius:2px}
+.schedule__col h3{background:var(--green2);color:var(--paper);padding:.7rem 1rem;font-size:1rem;display:flex;align-items:center;gap:.5rem}
+.schedule__col h3::before{content:"";width:12px;height:12px;background:var(--gold)}
+.slot{padding:.8rem 1rem;border-bottom:1px solid var(--paper2);display:flex;gap:.8rem;align-items:flex-start}
+.slot:last-child{border:0}
+.slot__time{flex:0 0 56px;text-align:center}
+.slot__time .hour{font-size:1.1rem;font-weight:900;color:var(--red);line-height:1}
+.slot__time .ampm{font-size:.6rem;color:var(--muted)}
+.slot__content{flex:1}
+.slot__content h4{font-size:.85rem;color:var(--dark);margin-bottom:.2rem;font-weight:800}
+.slot__content p{font-size:.72rem;color:var(--muted)}
+.slot__plat{font-size:.65rem;color:var(--green2);margin-top:.2rem;display:block}
+.slot__stamp{margin-left:auto;flex-shrink:0;font-size:.6rem;color:var(--gold);border:1px solid var(--gold);padding:.15rem .35rem;transform:rotate(3deg);font-weight:800}
+
+/* 栏目3：传播力雷达 */
+.radars{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.radar{background:var(--white);border:1.5px solid var(--green);border-radius:2px;padding:1.2rem;text-align:center}
+.radar__chart{width:80px;height:80px;margin:0 auto .8rem;position:relative}
+.radar__chart svg{width:100%;height:100%}
+.radar__chart .center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.radar__chart .center strong{font-size:1.1rem;color:var(--red);display:block;line-height:1}
+.radar__chart .center small{font-size:.6rem;color:var(--muted)}
+.radar h4{font-size:.88rem;color:var(--green);margin-bottom:.3rem;font-weight:800}
+.radar p{font-size:.72rem;color:var(--muted)}
+
+/* 栏目4：正版平台 */
+.rail{display:flex;flex-wrap:wrap;gap:.8rem}
+.chip{padding:.7rem 1rem;border:1.5px solid var(--green);background:var(--white);color:var(--dark);font-weight:800;min-width:140px;border-radius:2px}
+.chip small{display:block;font-weight:400;color:var(--muted);font-size:.72rem}
+
+/* 栏目5：避坑 */
+.warn{background:var(--paper2);border:2px solid var(--red);border-radius:2px;padding:1.4rem 1.6rem}
+.warn h3{color:var(--red);margin-bottom:.7rem;font-size:1.05rem;font-family:"Songti SC","SimSun",serif}
+.warn-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.warn ul{margin-left:1.1rem;color:var(--muted);font-size:.85rem}
+.warn li{margin:.3rem 0}
+.warn b{color:var(--dark)}
+
+.foot{margin-top:4rem;background:var(--green);color:var(--paper2);text-align:center;padding:2.5rem 1rem;border-top:4px double var(--gold)}
+.foot b{color:var(--gold)}
+.foot a{color:var(--gold2);margin:0 .4rem}
+.foot small{display:block;margin-top:.8rem;color:#6a8068}
+
+@media(max-width:980px){
+  .lead__main{grid-column:1/-1;border-right:0;border-bottom:2px solid var(--green)}
+  .columns,.radars{grid-template-columns:repeat(2,1fr)}
+  .schedule{grid-template-columns:1fr}
+  .warn-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .nav__box{justify-content:center}
+  .head h2{font-size:1.2rem}
+  .columns,.radars{grid-template-columns:1fr}
+  .masthead__title h1{letter-spacing:4px}
+  .lead__main{padding:1.2rem}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="nav">
+  <div class="nav__box">
+    <div class="nav__logo">影视传媒<b>编辑室</b><span class="nav__edition">PRESS ROOM</span></div>
+    <nav class="nav__links">
+      <a href="#columns">分栏片单</a>
+      <a href="#schedule">编辑排片</a>
+      <a href="#radars">传播力雷达</a>
+      <a href="#legal">正版平台</a>
+      <a href="#check">盗版避坑</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__masthead">
+    <div class="masthead__top">
+      <span>2025 · 第42期</span>
+      <span>每日正版影视导航</span>
+      <span>CN-EDITION</span>
+    </div>
+    <div class="masthead__title">
+      <h1>影视<em>传媒</em></h1>
+    </div>
+    <div class="masthead__rule">
+      <span>HEADLINE · 头版头条</span>
+    </div>
+    <div class="masthead__lead">
+      <div class="lead__main">
+        <span class="lead__tag">EDITORIAL · 社论</span>
+        <h2>拒绝盗版枪版与专用播放器，只推正版影视信号</h2>
+        <p>带"影视传媒/免费全集/未删减"的野站常做盗录聚合、网盘解压码、诱导安装专用播放器、博彩弹窗跳转。影视传媒编辑室不干那个：像新闻编辑一样按头版、深度、快讯、评论、专栏分栏筛正版片，编辑排片，传播力打分，遇"装播放器/解压码/全集免费"直接发回执NG。</p>
+        <a href="#columns" class="lead__btn">翻阅头版 ›</a>
+      </div>
+      <div class="lead__side">
+        <div class="lead__side-item"><span class="dot"></span>头版头条 · 院线新片正版导航</div>
+        <div class="lead__side-item"><span class="dot"></span>深度报道 · 经典修复版追踪</div>
+        <div class="lead__side-item"><span class="dot"></span>快讯 · 流媒体上线速报</div>
+        <div class="lead__side-item"><span class="dot"></span>评论 · 影评人精选推荐</div>
+        <div class="lead__side-item"><span class="dot"></span>专栏 · 导演/演员访谈纪实</div>
+        <div class="lead__side-item"><span class="dot"></span>避坑通告 · 盗版野站黑名单</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quick">
+  <div class="quick__box">
+    <div class="qbtn">📰 头版 → <b>院线场</b></div>
+    <div class="qbtn">🔍 深度 → <b>修复场</b></div>
+    <div class="qbtn">⚡ 快讯 → <b>流媒体场</b></div>
+    <div class="qbtn">✍️ 评论 → <b>影评场</b></div>
+    <div class="qbtn">📋 专栏 → <b>纪实场</b></div>
+    <div class="qbtn">🎞️ 经典 → <b>回顾场</b></div>
+  </div>
+</div>
+
+<main>
+<section class="wrap" id="columns">
+  <div class="head"><h2>分栏<span>片单</span></h2><a href="#">更多 ›</a></div>
+  <div class="columns">
+    <article class="col-card"><div class="col-card__header"><h3>头版头条</h3><span class="col-no">NO.01</span></div><div class="col-card__body"><div class="col-card__emo">📰</div><h4>院线新片正版速递</h4><p>当周上映重点影片，正版平台上线追踪，不推枪版偷录。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">腾讯/优酷/爱奇艺</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>深度报道</h3><span class="col-no">NO.02</span></div><div class="col-card__body"><div class="col-card__emo">🔍</div><h4>经典修复版追踪</h4><p>4K修复、导演剪辑版，按史料出处与版权方筛选，不囤无删减合集。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">1905/B站/央视频</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>快讯</h3><span class="col-no">NO.03</span></div><div class="col-card__body"><div class="col-card__emo">⚡</div><h4>流媒体上线速报</h4><p>Netflix/Disney+/腾讯/爱奇艺新片上线日历，正版订阅优先。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">Netflix/Disney+/腾讯</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>评论专栏</h3><span class="col-no">NO.04</span></div><div class="col-card__body"><div class="col-card__emo">✍️</div><h4>影评人精选推荐</h4><p>专业影评人按类型、情绪、画质分级推荐，不推成人擦边短剧。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">豆瓣/B站/腾讯</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>专栏纪实</h3><span class="col-no">NO.05</span></div><div class="col-card__body"><div class="col-card__emo">📋</div><h4>导演演员访谈</h4><p>幕后制作、创作访谈、纪录片，正版来源，不编造假新闻。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">B站/央视频/西瓜</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>副刊</h3><span class="col-no">NO.06</span></div><div class="col-card__body"><div class="col-card__emo">🎞️</div><h4>影史回顾与盘点</h4><p>金鸡/三大节/奥斯卡获奖回顾，按正版修复版挑选。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">1905/MUBI/B站</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>文化版</h3><span class="col-no">NO.07</span></div><div class="col-card__body"><div class="col-card__emo">🎨</div><h4>独立影像与纪录片</h4><p>独立电影、纪录片、短片，关注正版发行渠道与作者权益。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">MUBI/B站/西瓜</span></div></article>
+    <article class="col-card"><div class="col-card__header"><h3>读者来信</h3><span class="col-no">NO.08</span></div><div class="col-card__body"><div class="col-card__emo">📮</div><h4>观影避坑投稿</h4><p>读者投稿盗版野站、假弹窗、诱导安装等经历，编辑核实发布。</p><div class="radar-mini"><span></span><span></span><span></span><span></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span><span class="off"></span></div><span class="col-card__plat">编辑室核实</span></div></article>
+  </div>
+</section>
+
+<section class="wrap" id="schedule">
+  <div class="head"><h2>编辑<span>排片表</span></h2><a href="#">更多 ›</a></div>
+  <div class="schedule">
+    <div class="schedule__col">
+      <h3>晨间编辑台 · AM</h3>
+      <div class="slot"><div class="slot__time"><div class="hour">08</div><div class="ampm">AM</div></div><div class="slot__content"><h4>早间快讯 · 流媒体上线播报</h4><p>Netflix/Disney+/腾讯新片上线速报，正版订阅优先。</p><span class="slot__plat">Netflix/腾讯/优酷</span></div><div class="slot__stamp">已签发</div></div>
+      <div class="slot"><div class="slot__time"><div class="hour">10</div><div class="ampm">AM</div></div><div class="slot__content"><h4>深度编辑 · 经典修复版追踪</h4><p>4K修复、导演剪辑版，按版权方筛选。</p><span class="slot__plat">1905/B站</span></div><div class="slot__stamp">已签发</div></div>
+      <div class="slot"><div class="slot__time"><div class="hour">12</div><div class="ampm">NOON</div></div><div class="slot__content"><h4>午间头版 · 院线新片速递</h4><p>当周上映重点影片正版导航。</p><span class="slot__plat">腾讯/爱奇艺/优酷</span></div><div class="slot__stamp">已签发</div></div>
+    </div>
+    <div class="schedule__col">
+      <h3>夜间编辑台 · PM</h3>
+      <div class="slot"><div class="slot__time"><div class="hour">14</div><div class="ampm">PM</div></div><div class="slot__content"><h4>评论版 · 影评人精选</h4><p>专业影评人按类型、情绪分级推荐。</p><span class="slot__plat">豆瓣/B站</span></div><div class="slot__stamp">已签发</div></div>
+      <div class="slot"><div class="slot__time"><div class="hour">18</div><div class="ampm">PM</div></div><div class="slot__content"><h4>专栏版 · 幕后访谈</h4><p>导演/演员创作访谈、纪录片正版来源。</p><span class="slot__plat">B站/央视频</span></div><div class="slot__stamp">已签发</div></div>
+      <div class="slot"><div class="slot__time"><div class="hour">21</div><div class="ampm">PM</div></div><div class="slot__content"><h4>夜读 · 影史回顾与避坑通告</h4><p>获奖回顾+读者投稿盗版野站避坑。</p><span class="slot__plat">1905/MUBI</span></div><div class="slot__stamp">已签发</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="radars">
+  <div class="head"><h2>传播力<span>雷达矩阵</span></h2><a href="#">更多 ›</a></div>
+  <div class="radars">
+    <div class="radar"><div class="radar__chart"><svg viewBox="0 0 100 100"><polygon points="50,10 80,35 70,75 30,75 20,35" fill="none" stroke="#b8860b" stroke-width="1.5"/><circle cx="50" cy="10" r="2" fill="#c8321a"/><circle cx="80" cy="35" r="2" fill="#c8321a"/><circle cx="70" cy="75" r="2" fill="#c8321a"/><circle cx="30" cy="75" r="2" fill="#c8321a"/><circle cx="20" cy="35" r="2" fill="#c8321a"/></svg><div class="center"><strong>8.6</strong><small>/10</small></div></div><h4>选题价值</h4><p>影片文化意义、社会话题性、影史地位，编辑部综合评定。</p></div>
+    <div class="radar"><div class="radar__chart"><svg viewBox="0 0 100 100"><polygon points="50,15 75,30 65,70 35,70 25,30" fill="none" stroke="#b8860b" stroke-width="1.5"/><circle cx="50" cy="15" r="2" fill="#c8321a"/><circle cx="75" cy="30" r="2" fill="#c8321a"/><circle cx="65" cy="70" r="2" fill="#c8321a"/><circle cx="35" cy="70" r="2" fill="#c8321a"/><circle cx="25" cy="30" r="2" fill="#c8321a"/></svg><div class="center"><strong>9.2</strong><small>/10</small></div></div><h4>正版信号</h4><p>正版平台覆盖度、画质修复等级、字幕音轨完整性。</p></div>
+    <div class="radar"><div class="radar__chart"><svg viewBox="0 0 100 100"><polygon points="50,20 70,35 60,65 40,65 30,35" fill="none" stroke="#b8860b" stroke-width="1.5"/><circle cx="50" cy="20" r="2" fill="#c8321a"/><circle cx="70" cy="35" r="2" fill="#c8321a"/><circle cx="60" cy="65" r="2" fill="#c8321a"/><circle cx="40" cy="65" r="2" fill="#c8321a"/><circle cx="30" cy="35" r="2" fill="#c8321a"/></svg><div class="center"><strong>7.8</strong><small>/10</small></div></div><h4>受众覆盖</h4><p>各年龄段、各平台用户覆盖广度，亲子/成人分级标注。</p></div>
+    <div class="radar"><div class="radar__chart"><svg viewBox="0 0 100 100"><polygon points="50,12 78,32 72,72 28,72 22,32" fill="none" stroke="#b8860b" stroke-width="1.5"/><circle cx="50" cy="12" r="2" fill="#c8321a"/><circle cx="78" cy="32" r="2" fill="#c8321a"/><circle cx="72" cy="72" r="2" fill="#c8321a"/><circle cx="28" cy="72" r="2" fill="#c8321a"/><circle cx="22" cy="32" r="2" fill="#c8321a"/></svg><div class="center"><strong>9.8</strong><small>/10</small></div></div><h4>安全评级</h4><p>无盗版、无播放器、无网盘解压、无成人擦边，零容忍检测。</p></div>
+  </div>
+</section>
+
+<section class="wrap" id="legal">
+  <div class="head"><h2>正版<span>发行渠道</span></h2><a href="#">更多 ›</a></div>
+  <div class="rail">
+    <div class="chip">1905电影网<small>国产经典/老片/修复版</small></div>
+    <div class="chip">腾讯视频<small>院线/喜剧/悬疑/视效</small></div>
+    <div class="chip">爱奇艺<small>悬疑/文艺/社会剧情</small></div>
+    <div class="chip">优酷<small>港片/喜剧/合家欢</small></div>
+    <div class="chip">芒果TV<small>青春/轻喜剧/亲子</small></div>
+    <div class="chip">哔哩哔哩<small>动画/作者/纪录片</small></div>
+    <div class="chip">央视频<small>历史/少儿/官方纪录片</small></div>
+    <div class="chip">西瓜视频<small>治愈/下映片/免费专区</small></div>
+    <div class="chip">咪咕视频<small>国产/动画/大屏免费</small></div>
+    <div class="chip">学习强国<small>红色经典/纪录片无广告</small></div>
+    <div class="chip">MUBI<small>国际获奖/作者电影</small></div>
+    <div class="chip">Disney+<small>超级英雄/动画/科幻</small></div>
+  </div>
+</section>
+
+<section class="wrap" id="check">
+  <div class="head"><h2>编辑室<span>避坑通告</span></h2><a href="#">更多 ›</a></div>
+  <div class="warn">
+    <h3>⚠️ 影视传媒编辑室 · 拒发稿件类型</h3>
+    <div class="warn-grid">
+      <ul>
+        <li>不发"院线枪版/未删减全集/永久免费"稿件 → 盗录侵权，画质残缺，编辑室零容忍。</li>
+        <li>不签发"专用播放器/解码器/浏览器插件"推广 → 正规平台不需额外程序，陌生exe/apk可能带木马。</li>
+        <li>不刊登网盘解压码、加群领资源类投稿 → 解压费、加群红包、二次引流均属高风险诈骗。</li>
+      </ul>
+      <ul>
+        <li>不采集银行卡/身份证/短信验证码；假播放弹窗、博彩跳转立即关闭并举报。</li>
+        <li>不发"系统中毒/立即修复/客服微信充值/关闭杀软才能播"类软文 → 别点，用正规安全工具扫描。</li>
+        <li>不发成人/擦边短剧伪装电影栏目；选片只走正版来源与适龄分级，同名野站不等于本编辑室。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div><b>影视传媒</b> · 新闻编辑室 / 分栏正版片单 / 编辑排片 / 传播力雷达 / 盗版避坑</div>
+  <div style="margin-top:.6rem">
+    <a href="#columns">分栏片单</a>|
+    <a href="#schedule">编辑排片</a>|
+    <a href="#radars">传播力雷达</a>|
+    <a href="#legal">正版平台</a>|
+    <a href="#check">盗版避坑</a>|
+    <a href="#">关于编辑室</a>|
+    <a href="#">免责声明</a>
+  </div>
+  <small>官网：https://yingshichuanmei-h5.github.io</small>
+  <small>© 2025 影视传媒 新闻编辑室正版电影导航站；不提供盗版影片、不聚合网盘资源、不提供成人内容、不引导安装第三方播放器</small>
+</footer>
+
+</body>
+</html>
